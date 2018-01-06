@@ -10,6 +10,20 @@ var users = require('./routes/users');
 
 var app = express();
 
+var passport   = require('passport')
+var session    = require('express-session')
+var bodyParser = require('body-parser')
+
+//For BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// For Passport
+
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -41,6 +55,16 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+//Models
+var models = require("./models");
+//Sync Database
+models.sequelize.sync().then(function() {
+    console.log('Nice! Database looks fine')
+}).catch(function(err) {
+
+    console.log(err, "Something went wrong with the Database Update!")
 });
 
 module.exports = app;
