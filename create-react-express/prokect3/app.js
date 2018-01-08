@@ -52,13 +52,13 @@ app.get('/auth/facebook/callback',
     res.redirect('/');
   });
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
-});
-
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
+// passport.serializeUser(function(user, cb) {
+//   cb(null, user);
+// });
+//
+// passport.deserializeUser(function(obj, cb) {
+//   cb(null, obj);
+// });
 
 
 // catch 404 and forward to error handler
