@@ -39,7 +39,7 @@ function getEnvString(name) {
 // passport-facebook middleware
 passport.use(new Strategy({
     clientID: getEnvString('FACEBOOK_CLIENT_ID'),
-    clientSecret: getEnvString('FACEBOOK_CLIENT_SECRETX'),
+    clientSecret: getEnvString('FACEBOOK_CLIENT_SECRET'),
     callbackURL: "http://localhost:3001/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
