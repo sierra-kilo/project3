@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var session = require('express-session');
 var passport = require('passport');
 var Strategy = require('passport-facebook').Strategy;
 
@@ -37,6 +38,10 @@ function getEnvString(name) {
 }
 
 // passport-facebook middleware
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 passport.use(new Strategy({
     clientID: getEnvString('FACEBOOK_CLIENT_ID'),
     clientSecret: getEnvString('FACEBOOK_CLIENT_SECRET'),
@@ -87,5 +92,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// routes ======================================================================
+require('./routes/user.js')(app, passport); // load our routes and pass in our app and fully configured passport
+//Routes
+// var authRoute = require('./routes/auth.js')(app, passport);
+
+
 
 module.exports = app;
