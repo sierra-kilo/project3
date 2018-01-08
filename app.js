@@ -27,10 +27,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+function getEnvString(name) {
+  const value = process.env[name];
+  if (value === undefined || value === null) {
+    console.error('Missing required environment variable: ' + name);
+    process.exit(1);
+  }
+  return value;
+}
+
 // passport-facebook middleware
 passport.use(new Strategy({
-    clientID: "170223146915722",
-    clientSecret: "d6b153187fcd35b10f3177885a8d5b3b",
+    clientID: getEnvString('FACEBOOK_CLIENT_ID'),
+    clientSecret: getEnvString('FACEBOOK_CLIENT_SECRETX'),
     callbackURL: "http://localhost:3001/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
