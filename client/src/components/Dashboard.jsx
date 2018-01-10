@@ -17,7 +17,9 @@ const Dashboard = ({ secretData, projectList }) => (
     />
     {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
 
-    {projectList && projectList.map(renderProject)}
+    <ul>
+      {projectList && projectList.map(renderProject)}
+    </ul>
   </Card>
 );
 
