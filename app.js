@@ -94,7 +94,7 @@ app.use(function(err, req, res, next) {
 });
 
 // routes ======================================================================
-require('./routes/user.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./routes/users.js')(app, passport); // load our routes and pass in our app and fully configured passport
 //Routes
 // var authRoute = require('./routes/auth.js')(app, passport);
 
