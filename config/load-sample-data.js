@@ -1,3 +1,4 @@
+const util = require('util');
 const User = require('../server/models/User');
 const Project = require('../server/models/Project');
 
@@ -16,7 +17,14 @@ async function addDummyUser(user) {
 }
 
 async function populateSampleData() {
+    let userCount = 0;
     for (const user of require('./dummy-users')) {
+        if ( userCount >= 10) {
+            // Only load first 10 users
+            break;
+        }
+        userCount += 1;
+        user.id = '0d327d43-9770-4ad0-9dfa-0014b88f040' + userCount;
         const userId = await User.save(user);
         console.log('Created user: %j', user);
 

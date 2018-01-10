@@ -47,7 +47,7 @@ class User {
             err.userExists = true;
             throw err;
         }
-        const id = uuid();
+        const id = obj.id || uuid();
         const passwordHash = await hashPassword(obj.password);
         const user = {
             id,
