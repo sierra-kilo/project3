@@ -10,7 +10,7 @@ class Project {
     }
 
     static async save(obj) {
-        const id = uuid();
+        const id = obj.id || uuid();
         const row = {
             id,
             user_id: obj.userId,
@@ -30,7 +30,7 @@ class Project {
 
     static findByUserId(userId) {
         const list = [];
-        for(const projectId of Object.keys(PROJECTS)) {
+        for (const projectId of Object.keys(PROJECTS)) {
             const row = PROJECTS[projectId];
             if (row.user_id === userId) {
                 list.push(new Project(row));
