@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+main () {
+  rm -rf node_modules
+  rm -rf client/dist
+}
+
+main "$@"
