@@ -65,4 +65,3 @@ SignUpForm.propTypes = {
 };
 
 export default SignUpForm;
-

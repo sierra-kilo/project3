@@ -12,6 +12,7 @@ const Base = ({ children }) => (
 
       {Auth.isUserAuthenticated() ? (
         <div className="top-bar-right">
+          <Link to="/addproject">Add Project</Link>
           <Link to="/logout">Log out</Link>
         </div>
       ) : (
@@ -20,7 +21,6 @@ const Base = ({ children }) => (
           <Link to="/signup">Sign up</Link>
         </div>
       )}
-
     </div>
 
     { /* child component will be rendered here */ }
