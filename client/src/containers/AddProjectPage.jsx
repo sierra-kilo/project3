@@ -19,7 +19,7 @@ class AddProjectPage extends React.Component {
     };
 
     this.processForm = this.processForm.bind(this);
-    this.changeproject = this.changeproject.bind(this);
+    this.changeProject = this.changeProject.bind(this);
   }
 
   /**
@@ -73,7 +73,7 @@ class AddProjectPage extends React.Component {
    *
    * @param {object} event - the JavaScript event object
    */
-  changeproject(event) {
+  changeProject(event) {
     const field = event.target.name;
     const project = this.state.project;
     project[field] = event.target.value;
