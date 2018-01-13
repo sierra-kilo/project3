@@ -20,8 +20,8 @@ const SearchForm = ({
       <div className="field-line">
         <TextField
           floatingLabelText="Search"
-          name="search"
-          errorText={errors.search}
+          name="value"
+          errorText={errors.value}
           onChange={onChange}
           value={search.value}
         />
