@@ -12,10 +12,10 @@ function renderProject(project) {
 const Dashboard = ({ secretData, projectList }) => (
   <Card className="container">
     <CardTitle
-      title="Dashboard"
-      subtitle="You should get access to this page only after authentication."
+      title="My Dashboard"
+      subtitle="Welcome to your Project Dashboard."
     />
-    {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
+    {/* {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>} */}
 
     <ul>
       {projectList && projectList.map(renderProject)}
