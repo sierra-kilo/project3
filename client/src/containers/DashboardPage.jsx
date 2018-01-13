@@ -3,6 +3,8 @@ import Auth from '../modules/Auth';
 import Ajax from '../modules/Ajax';
 import Dashboard from '../components/Dashboard.jsx';
 
+console.log(Auth.user);
+
 
 class DashboardPage extends React.Component {
 
@@ -14,7 +16,7 @@ class DashboardPage extends React.Component {
 
     this.state = {
       secretData: '',
-      projectList: [],
+      settlementList: [],
     };
   }
 
@@ -23,10 +25,10 @@ class DashboardPage extends React.Component {
    */
    componentDidMount() {
     Ajax({
-      url: '/api/projects',
-    }).then((projectList) => {
+      url: '/api/settlements',
+    }).then((settlementList) => {
       this.setState({
-        projectList
+        settlementList
       })
     })
 
@@ -43,7 +45,7 @@ class DashboardPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (<Dashboard secretData={this.state.secretData} projectList={this.state.projectList} />);
+    return (<Dashboard secretData={this.state.secretData} settlementList={this.state.settlementList} />);
   }
 
 }

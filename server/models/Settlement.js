@@ -2,7 +2,7 @@ const uuid = require('uuid');
 
 const PROJECTS = {};
 
-class Project {
+class Settlement {
     constructor(row) {
         this.id = row.id;
         this.name = row.name;
@@ -20,24 +20,24 @@ class Project {
         return id;
     }
 
-    static findOneById(projectId) {
-        const row = PROJECTS[projectId];
+    static findOneById(settlementId) {
+        const row = PROJECTS[settlementId];
         if (row) {
-            return Promise.resolve(new Project(row));
+            return Promise.resolve(new Settlement(row));
         }
         return Promise.resolve(null);
     }
 
     static findByUserId(userId) {
         const list = [];
-        for (const projectId of Object.keys(PROJECTS)) {
-            const row = PROJECTS[projectId];
+        for (const settlementId of Object.keys(PROJECTS)) {
+            const row = PROJECTS[settlementId];
             if (row.user_id === userId) {
-                list.push(new Project(row));
+                list.push(new Settlement(row));
             }
         }
         return Promise.resolve(list);
     }
 }
 
-module.exports = Project;
+module.exports = Settlement;

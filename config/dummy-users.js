@@ -1,4 +1,4 @@
-// Data for sample users that are auto populated so that we 
+// Data for sample users that are auto populated so that we
 // don't have to manually create them every time.
 
 module.exports = [
@@ -6,6 +6,7 @@ module.exports = [
         "name": "Test",
         "email": "test@example.com",
         "password": "asdfasdf",
+        "firm": "bestfirm ever",
     },
     {
         "name": "Shant",

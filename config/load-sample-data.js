@@ -1,6 +1,6 @@
 const util = require('util');
 const User = require('../server/models/User');
-const Project = require('../server/models/Project');
+const Settlement = require('../server/models/Settlement');
 
 async function addDummyUser(user) {
     if (!user.password || user.password.length < 8) {
@@ -28,14 +28,14 @@ async function populateSampleData() {
         const userId = await User.save(user);
         console.log('Created user: %j', user);
 
-        const numProjects = Math.floor(1 + Math.random() * 5);
-        for (let i = 0; i <= numProjects; i++) {
-            const projectId = await Project.save({
+        const numSettlements = Math.floor(1 + Math.random() * 5);
+        for (let i = 0; i <= numSettlements; i++) {
+            const settlementId = await Settlement.save({
                 id: userCount + 'e5dac36-be14-4a9c-8f59-d7dcfd25344' + i,
                 userId,
-                name: 'Sample Project for ' + user.name + ' #' + i,
+                name: 'Sample Settlement for ' + user.name + ' #' + i,
             });
-            console.log('Added a project id=%s for userId=%s', projectId, userId);
+            console.log('Added a settlement id=%s for userId=%s', settlementId, userId);
         }
     }
 }

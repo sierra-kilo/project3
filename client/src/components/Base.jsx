@@ -7,11 +7,13 @@ const Base = ({ children }) => (
   <div>
     <div className="top-bar">
       <div className="top-bar-left">
-        <IndexLink to="/">React App</IndexLink>
+        <IndexLink to="/">Settlement ✓</IndexLink>
       </div>
 
       {Auth.isUserAuthenticated() ? (
         <div className="top-bar-right">
+          <Link to="/search">Search</Link>
+          <Link to="/addsettlement">Add Settlement</Link>
           <Link to="/logout">Log out</Link>
         </div>
       ) : (
@@ -20,7 +22,6 @@ const Base = ({ children }) => (
           <Link to="/signup">Sign up</Link>
         </div>
       )}
-
     </div>
 
     { /* child component will be rendered here */ }
