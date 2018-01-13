@@ -1,31 +1,33 @@
 import React, { PropTypes } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 
-function renderProject(project) {
+function renderSettlement(settlement) {
   return (
     <li>
-      {project.name}
+      {settlement.name}
     </li>
   );
 }
 
-const Dashboard = ({ secretData, projectList }) => (
+const Dashboard = ({ secretData, settlementList }) => (
+
   <Card className="container">
     <CardTitle
       title="My Dashboard"
-      subtitle="Welcome to your Project Dashboard."
+      subtitle="Welcome to your Settlement Dashboard."
     />
     {/* {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>} */}
 
     <ul>
-      {projectList && projectList.map(renderProject)}
+      {settlementList && settlementList.map(renderSettlement)}
     </ul>
   </Card>
+
 );
 
 Dashboard.propTypes = {
   secretData: PropTypes.string.isRequired,
-  projectList: PropTypes.array.isRequired
+  settlementList: PropTypes.array.isRequired
 };
 
 export default Dashboard;

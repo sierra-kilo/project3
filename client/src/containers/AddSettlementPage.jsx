@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import AddProjectForm from '../components/AddProjectForm.jsx';
+import AddSettlementForm from '../components/AddSettlementForm.jsx';
 
 
-class AddProjectPage extends React.Component {
+class AddSettlementPage extends React.Component {
 
   /**
    * Class constructor.
@@ -13,13 +13,17 @@ class AddProjectPage extends React.Component {
     // set the initial component state
     this.state = {
       errors: {},
-      project: {
-        name: ''
+      settlement: {
+        firstName: '',
+        lastName: '',
+        defendant: '',
+        settlementAmount: '',
+        claimCategory: '',
       }
     };
 
     this.processForm = this.processForm.bind(this);
-    this.changeProject = this.changeProject.bind(this);
+    this.changeSettlement = this.changeSettlement.bind(this);
   }
 
   /**
@@ -32,12 +36,17 @@ class AddProjectPage extends React.Component {
     event.preventDefault();
 
     // create a string for an HTTP body message
-    const name = encodeURIComponent(this.state.project.name);
-    const formData = `name=${name}`;
+    const firmName = encodeURIComponent(this.state.settlement.firstName);
+    const lastName = encodeURIComponent(this.state.settlement.lastName);
+    const defendant = encodeURIComponent(this.state.settlement.defendant);
+    const settlementAmount = encodeURIComponent(this.state.settlement.settlementAmount);
+    const claimCategory = encodeURIComponent(this.state.settlement.claimCategory);
+
+    const formData = `firstName=${firstName}&lastName=${lastName}&defendant=${defendant}&settlementAmount=${settlementAmount}&claimCategory=${claimCategory}`;
 
     // create an AJAX request
     const xhr = new XMLHttpRequest();
-    xhr.open('post', '/addproject');
+    xhr.open('post', '/addsettlement');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
@@ -69,17 +78,17 @@ class AddProjectPage extends React.Component {
   }
 
   /**
-   * Change the project object.
+   * Change the settlement object.
    *
    * @param {object} event - the JavaScript event object
    */
-  changeProject(event) {
+  changeSettlement(event) {
     const field = event.target.name;
-    const project = this.state.project;
-    project[field] = event.target.value;
+    const settlement = this.state.settlement;
+    settlement[field] = event.target.value;
 
     this.setState({
-      project
+      settlement
     });
   }
 
@@ -88,19 +97,19 @@ class AddProjectPage extends React.Component {
    */
   render() {
     return (
-      <AddProjectForm
+      <AddSettlementForm
         onSubmit={this.processForm}
-        onChange={this.changeProject}
+        onChange={this.changeSettlement}
         errors={this.state.errors}
-        project={this.state.project}
+        settlement={this.state.settlement}
       />
     );
   }
 
 }
 
-AddProjectPage.contextTypes = {
+AddSettlementPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default AddProjectPage;
+export default AddSettlementPage;

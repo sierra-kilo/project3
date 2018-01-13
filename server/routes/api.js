@@ -1,6 +1,6 @@
 const express = require('express');
 const router = new express.Router();
-const Project = require('../models/Project')
+const Settlement = require('../models/Settlement')
 
 router.get('/dashboard', (req, res) => {
   res.status(200).json({
@@ -14,11 +14,13 @@ function asyncWrap(fn) {
   }
 }
 
-router.get('/projects', asyncWrap(async (req, res) => {
+router.get('/settlements', asyncWrap(async (req, res) => {
   console.log('req: %j', req.user);
   const userId = req.user.id;
-  const projectList = await Project.findByUserId(userId);
-  res.send(projectList);
+  const settlementList = await Settlement.findByUserId(userId);
+  res.send(settlementList);
+  console.log(req.user);
+  return req.user.email
 }));
 
 module.exports = router;

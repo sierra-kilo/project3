@@ -1,4 +1,5 @@
 require('./config/load-sample-data');
+// require('./config/dummy-data')
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -19,9 +20,11 @@ const localLoginStrategy = require('./server/passport/local-login');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
+
 // pass the authorization checker middleware
 const authCheckMiddleware = require('./server/middleware/auth-check');
 app.use('/api', authCheckMiddleware);
+
 
 // routes
 const authRoutes = require('./server/routes/auth');

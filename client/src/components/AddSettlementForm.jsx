@@ -5,15 +5,15 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 
-const SignUpForm = ({
+const AddSettlementForm = ({
   onSubmit,
   onChange,
   errors,
-  user,
+  settlement,
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Sign Up</h2>
+      <h2 className="card-heading">New Settlement</h2>
 
       {errors.summary && <p className="error-message">{errors.summary}</p>}
 
@@ -21,9 +21,9 @@ const SignUpForm = ({
         <TextField
           floatingLabelText="First Name"
           name="firstName"
-          errorText={errors.name}
+          errorText={errors.firstName}
           onChange={onChange}
-          value={user.firstName}
+          value={settlement.firstName}
         />
       </div>
 
@@ -31,57 +31,58 @@ const SignUpForm = ({
         <TextField
           floatingLabelText="Last Name"
           name="lastName"
-          errorText={errors.name}
+          errorText={errors.lastName}
           onChange={onChange}
-          value={user.lastName}
+          value={settlement.lastName}
         />
       </div>
 
       <div className="field-line">
         <TextField
-          floatingLabelText="Email"
-          name="email"
-          errorText={errors.email}
+          floatingLabelText="Defendant"
+          name="defendant"
+          errorText={errors.defendant}
           onChange={onChange}
-          value={user.email}
+          value={settlement.defendant}
         />
       </div>
 
       <div className="field-line">
         <TextField
-          floatingLabelText="Firm Name"
-          name="firmName"
-          errorText={errors.email}
+          floatingLabelText="Settlement Amount"
+          name="settlementAmount"
+          errorText={errors.settlementAmount}
           onChange={onChange}
-          value={user.firmName}
+          value={settlement.settlementAmount}
         />
       </div>
 
       <div className="field-line">
         <TextField
-          floatingLabelText="Password"
-          type="password"
-          name="password"
+          floatingLabelText="Claim Category"
+          name="claimCategory"
+          errorText={errors.claimCategory}
           onChange={onChange}
-          errorText={errors.password}
-          value={user.password}
+          value={settlement.claimCategory}
         />
       </div>
+
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Create New Account" primary />
+        {/* <RaisedButton type="submit" label="Create New Settlement" primary /> */}
+        {/* change to button later */}
+        <Link to="/"><RaisedButton type="submit" label="Create New Settlement" primary /></Link>
       </div>
 
-      <CardText>Already have an account? <Link to={'/login'}>Log in</Link></CardText>
     </form>
   </Card>
 );
 
-SignUpForm.propTypes = {
+AddSettlementForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  settlement: PropTypes.object.isRequired
 };
 
-export default SignUpForm;
+export default AddSettlementForm;

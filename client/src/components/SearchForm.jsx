@@ -5,42 +5,43 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 
-const AddProjectForm = ({
+const SearchForm = ({
   onSubmit,
   onChange,
   errors,
-  project,
+  search,
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">New Project</h2>
+      <h2 className="card-heading">Search</h2>
 
       {errors.summary && <p className="error-message">{errors.summary}</p>}
 
       <div className="field-line">
         <TextField
-          floatingLabelText="Name"
-          name="name"
-          errorText={errors.name}
+          floatingLabelText="Search"
+          name="search"
+          errorText={errors.search}
           onChange={onChange}
-          value={project.name}
+          value={search.value}
         />
       </div>
 
-
       <div className="button-line">
-        <RaisedButton type="submit" label="Create New Project" primary />
+        {/* <RaisedButton type="submit" label="Search" primary /> */}
+        {/* change to button later */}
+        <Link to="/"><RaisedButton type="submit" label="Search" primary /></Link>
       </div>
 
     </form>
   </Card>
 );
 
-AddProjectForm.propTypes = {
+SearchForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
-  project: PropTypes.object.isRequired
+  search: PropTypes.object.isRequired
 };
 
-export default AddProjectForm;
+export default SearchForm;

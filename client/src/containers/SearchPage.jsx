@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import SignUpForm from '../components/SignUpForm.jsx';
+import SearchForm from '../components/SearchForm.jsx';
 
 
-class SignUpPage extends React.Component {
+class SearchPage extends React.Component {
 
   /**
    * Class constructor.
@@ -13,17 +13,13 @@ class SignUpPage extends React.Component {
     // set the initial component state
     this.state = {
       errors: {},
-      user: {
-        email: '',
-        firstName: '',
-        lastName: '',
-        password: '',
-        firmName: '',
+      search: {
+        value: '',
       }
     };
 
     this.processForm = this.processForm.bind(this);
-    this.changeUser = this.changeUser.bind(this);
+    this.changeSearch = this.changeSearch.bind(this);
   }
 
   /**
@@ -36,14 +32,12 @@ class SignUpPage extends React.Component {
     event.preventDefault();
 
     // create a string for an HTTP body message
-    const name = encodeURIComponent(this.state.user.name);
-    const email = encodeURIComponent(this.state.user.email);
-    const password = encodeURIComponent(this.state.user.password);
-    const formData = `firstNamename=${name}&email=${email}&password=${password}&firmName=${firmName}`;
+    const value = encodeURIComponent(this.state.search.value);
+    const formData = `value=${value}`;
 
     // create an AJAX request
     const xhr = new XMLHttpRequest();
-    xhr.open('post', '/auth/signup');
+    xhr.open('post', '/search');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
@@ -75,17 +69,17 @@ class SignUpPage extends React.Component {
   }
 
   /**
-   * Change the user object.
+   * Change the search object.
    *
    * @param {object} event - the JavaScript event object
    */
-  changeUser(event) {
+  changeSearch(event) {
     const field = event.target.name;
-    const user = this.state.user;
-    user[field] = event.target.value;
+    const search = this.state.search;
+    search[field] = event.target.value;
 
     this.setState({
-      user
+      search
     });
   }
 
@@ -94,19 +88,19 @@ class SignUpPage extends React.Component {
    */
   render() {
     return (
-      <SignUpForm
+      <SearchForm
         onSubmit={this.processForm}
-        onChange={this.changeUser}
+        onChange={this.changeSearch}
         errors={this.state.errors}
-        user={this.state.user}
+        search={this.state.search}
       />
     );
   }
 
 }
 
-SignUpPage.contextTypes = {
+SearchPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default SignUpPage;
+export default SearchPage;
